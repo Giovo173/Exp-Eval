@@ -1,6 +1,5 @@
 // File: Benchmark.java
 import java.util.*;
-import java.util.concurrent.TimeUnit;
 
 public class Benchmark {
 
@@ -93,21 +92,21 @@ public class Benchmark {
         Random rand = new Random();
 
         switch (type) {
-            case RANDOM:
+            case RANDOM -> {
                 for (int i = 0; i < size; i++) {
                     array[i] = rand.nextInt();
                 }
-                break;
-            case SORTED:
+            }
+            case SORTED -> {
                 for (int i = 0; i < size; i++) {
                     array[i] = i;
                 }
-                break;
-            case REVERSE_SORTED:
+            }
+            case REVERSE_SORTED -> {
                 for (int i = 0; i < size; i++) {
                     array[i] = size - i;
                 }
-                break;
+            }
         }
 
         return array;
