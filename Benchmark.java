@@ -3,7 +3,6 @@ import java.util.*;
 
 public class Benchmark {
 
-    // Define the sorting algorithms to benchmark
     private static final List<Sorter<Integer>> SORTERS = Arrays.asList(
             new BubbleSortUntilNoChange<>(),
             new BubbleSortWhileNeeded<>(),
@@ -11,7 +10,6 @@ public class Benchmark {
             new SelectionSortGPT<>()
     );
 
-    // Define the names of the sorting algorithms for reporting
     private static final List<String> SORTER_NAMES = Arrays.asList(
             "BubbleSortUntilNoChange",
             "BubbleSortWhileNeeded",
@@ -19,28 +17,23 @@ public class Benchmark {
             "SelectionSortGPT"
     );
 
-    // Define array sizes for benchmarking
-    private static final int[] ARRAY_SIZES = {1000, 5000};
+    private static final int[] ARRAY_SIZES = {1000, 5000, 10000};
 
-    // Define the number of runs for each test to ensure reliability
     private static final int RUNS = 10;
 
-    // Define types of data to sort
-    private enum ArrayType {
+    private enum sorting {
         RANDOM,
         SORTED,
         REVERSE_SORTED
     }
 
     public static void main(String[] args) {
-        // Map to store benchmarking results
-        Map<String, Map<ArrayType, Map<Integer, List<Long>>>> results = new HashMap<>();
+        Map<String, Map<sorting, Map<Integer, List<Long>>>> results = new HashMap<>();
 
-        // Initialize the results map
         for (int i = 0; i < SORTERS.size(); i++) {
             String sorterName = SORTER_NAMES.get(i);
             results.put(sorterName, new HashMap<>());
-            for (ArrayType type : ArrayType.values()) {
+            for (sorting type : sorting.values()) {
                 results.get(sorterName).put(type, new HashMap<>());
                 for (int size : ARRAY_SIZES) {
                     results.get(sorterName).get(type).put(size, new ArrayList<>());
@@ -48,35 +41,29 @@ public class Benchmark {
             }
         }
 
-        // Perform benchmarking
         for (int size : ARRAY_SIZES) {
-            for (ArrayType type : ArrayType.values()) {
-                // Generate the base array based on the type
-                Integer[] baseArray = generateArray(size, type);
+            for (sorting type : sorting.values()) {
+                Integer[] baseArray = generateIntArray(size, type);
 
                 for (int run = 0; run < RUNS; run++) {
                     for (int i = 0; i < SORTERS.size(); i++) {
                         String sorterName = SORTER_NAMES.get(i);
                         Sorter<Integer> sorter = SORTERS.get(i);
 
-                        // Create a copy of the array to sort
                         Integer[] arrayToSort = Arrays.copyOf(baseArray, baseArray.length);
 
-                        // Measure execution time
                         long startTime = System.nanoTime();
                         sorter.sort(arrayToSort);
                         long endTime = System.nanoTime();
 
-                        long duration = endTime - startTime; // Duration in nanoseconds
+                        long duration = endTime - startTime;
 
-                        // Store the result
                         results.get(sorterName).get(type).get(size).add(duration);
                     }
                 }
             }
         }
 
-        // Report the results
         reportResults(results);
     }
 
@@ -87,28 +74,63 @@ public class Benchmark {
      * @param type the type of data in the array
      * @return the generated array
      */
-    private static Integer[] generateArray(int size, ArrayType type) {
+    private static Integer[] generateIntArray(int size, sorting type) {
         Integer[] array = new Integer[size];
         Random rand = new Random();
 
-        switch (type) {
-            case RANDOM -> {
-                for (int i = 0; i < size; i++) {
-                    array[i] = rand.nextInt();
-                }
-            }
-            case SORTED -> {
-                for (int i = 0; i < size; i++) {
-                    array[i] = i;
-                }
-            }
-            case REVERSE_SORTED -> {
-                for (int i = 0; i < size; i++) {
-                    array[i] = size - i;
-                }
+        if(type == sorting.RANDOM){
+            for (int i = 0; i < size; i++) {
+                array[i] = rand.nextInt();
             }
         }
+        else if(type == sorting.SORTED){
+            for (int i = 0; i < size; i++) {
+                array[i] = i;
+            }
+        }
+        else if(type == sorting.REVERSE_SORTED){
+            for (int i = 0; i < size; i++) {
+                array[i] = size - i;
+            }
+        }
+        return array;
+    }
 
+    private static Float[] generateFloatArray(int size, sorting type) {
+        Float[] array = new Float[size];
+        Random rand = new Random();
+
+        if(type == sorting.RANDOM){
+            for (int i = 0; i < size; i++) {
+                array[i] = rand.nextFloat();
+            }
+        }
+        else if(type == sorting.SORTED){
+            for(int i = 0; i < size; i++){
+                float j = rand.nextFloat();
+                if(i == 0) {
+                    array[i] = j;
+                    continue;
+                }
+                while(j < array[i - 1]){
+                    j = rand.nextFloat();
+                }
+                array[i] = j;
+            }
+        }
+        else if(type == sorting.REVERSE_SORTED){
+            for(int i = 0; i < size; i++){
+                float j = rand.nextFloat();
+                if(i == 0) {
+                    array[i] = j;
+                    continue;
+                }
+                while(j > array[i - 1]){
+                    j = rand.nextFloat();
+                }
+                array[i] = j;
+            }
+        }
         return array;
     }
 
@@ -117,10 +139,10 @@ public class Benchmark {
      *
      * @param results the benchmarking results
      */
-    private static void reportResults(Map<String, Map<ArrayType, Map<Integer, List<Long>>>> results) {
+    private static void reportResults(Map<String, Map<sorting, Map<Integer, List<Long>>>> results) {
         for (String sorterName : SORTER_NAMES) {
             System.out.println("=== " + sorterName + " ===");
-            for (ArrayType type : ArrayType.values()) {
+            for (sorting type : sorting.values()) {
                 System.out.println("  Data Type: " + type);
                 for (int size : ARRAY_SIZES) {
                     List<Long> timings = results.get(sorterName).get(type).get(size);
@@ -166,6 +188,6 @@ public class Benchmark {
      * @return the time in milliseconds
      */
     private static double nanosToMillis(double nanos) {
-        return nanos / 1_000_000.0;
+        return nanos / 1000000.0;
     }
 }
