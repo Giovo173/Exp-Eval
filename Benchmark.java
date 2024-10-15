@@ -10,6 +10,13 @@ public class Benchmark {
             new SelectionSortGPT<>()
     );
 
+    private static final List<Sorter<Float>> FLOAT_SORTERS = Arrays.asList(
+            new BubbleSortUntilNoChange<>(),
+            new BubbleSortWhileNeeded<>(),
+            new QuickSortGPT<>(),
+            new SelectionSortGPT<>()
+    );
+
     private static final List<String> SORTER_NAMES = Arrays.asList(
             "BubbleSortUntilNoChange",
             "BubbleSortWhileNeeded",
@@ -75,6 +82,51 @@ public class Benchmark {
         }
 
         reportResults(results);
+        results.clear();
+        for (int i = 0; i < FLOAT_SORTERS.size(); i++) {
+
+            String sorterName = SORTER_NAMES.get(i);
+            results.put(sorterName, new HashMap<>());
+
+            for (sorting type : sorting.values()) {
+
+                results.get(sorterName).put(type, new HashMap<>());
+
+                for (int size : ARRAY_SIZES) {
+
+                    results.get(sorterName).get(type).put(size, new ArrayList<>());
+                }
+            }
+        }
+
+        for (int size : ARRAY_SIZES) {
+
+            for (sorting type : sorting.values()) {
+
+                Float[] baseArray = generateFloatArray(size, type);
+
+                for (int run = 0; run < RUNS; run++) {
+
+                    for (int i = 0; i < SORTERS.size(); i++) {
+
+                        String sorterName = SORTER_NAMES.get(i);
+                        Sorter<Float> sorter = FLOAT_SORTERS.get(i);
+
+                        Float[] arrayToSort = Arrays.copyOf(baseArray, baseArray.length);
+
+                        //measure
+                        long startTime = System.nanoTime();
+                        sorter.sort(arrayToSort);
+                        long endTime = System.nanoTime();
+                        long duration = endTime - startTime;
+
+                        results.get(sorterName).get(type).get(size).add(duration);
+                    }
+                }
+            }
+        }
+
+        reportResults(results);
     }
 
     /**
@@ -125,28 +177,17 @@ public class Benchmark {
         else if(type == sorting.SORTED){
             for(int i = 0; i < size; i++){
                 float j = rand.nextFloat();
-                if(i == 0) {
-                    array[i] = j;
-                    continue;
-                }
-                while(j < array[i - 1]){
-                    j = rand.nextFloat();
-                }
                 array[i] = j;
             }
+            Arrays.sort(array);
         }
         else if(type == sorting.REVERSE_SORTED){
             for(int i = 0; i < size; i++){
                 float j = rand.nextFloat();
-                if(i == 0) {
-                    array[i] = j;
-                    continue;
-                }
-                while(j > array[i - 1]){
-                    j = rand.nextFloat();
-                }
                 array[i] = j;
             }
+            Arrays.sort(array, Collections.reverseOrder());
+
         }
         return array;
     }
@@ -158,9 +199,9 @@ public class Benchmark {
      */
     private static void reportResults(Map<String, Map<sorting, Map<Integer, List<Long>>>> results) {
         for (String sorterName : SORTER_NAMES) {
-            System.out.println("=== " + sorterName + " ===");
+            System.out.println(sorterName);
             for (sorting type : sorting.values()) {
-                System.out.println("  Data Type: " + type);
+                System.out.println(" Data Type: " + type);
                 for (int size : ARRAY_SIZES) {
                     List<Long> timings = results.get(sorterName).get(type).get(size);
                     double average = timings.stream().mapToLong(Long::longValue).average().orElse(0.0);
