@@ -28,34 +28,44 @@ public class Benchmark {
     }
 
     public static void main(String[] args) {
+        //   name      sort type   array length    data
         Map<String, Map<sorting, Map<Integer, List<Long>>>> results = new HashMap<>();
 
         for (int i = 0; i < SORTERS.size(); i++) {
+
             String sorterName = SORTER_NAMES.get(i);
             results.put(sorterName, new HashMap<>());
+
             for (sorting type : sorting.values()) {
+
                 results.get(sorterName).put(type, new HashMap<>());
+
                 for (int size : ARRAY_SIZES) {
+
                     results.get(sorterName).get(type).put(size, new ArrayList<>());
                 }
             }
         }
 
         for (int size : ARRAY_SIZES) {
+
             for (sorting type : sorting.values()) {
+
                 Integer[] baseArray = generateIntArray(size, type);
 
                 for (int run = 0; run < RUNS; run++) {
+
                     for (int i = 0; i < SORTERS.size(); i++) {
+
                         String sorterName = SORTER_NAMES.get(i);
                         Sorter<Integer> sorter = SORTERS.get(i);
 
                         Integer[] arrayToSort = Arrays.copyOf(baseArray, baseArray.length);
 
+                        //measure
                         long startTime = System.nanoTime();
                         sorter.sort(arrayToSort);
                         long endTime = System.nanoTime();
-
                         long duration = endTime - startTime;
 
                         results.get(sorterName).get(type).get(size).add(duration);
@@ -96,6 +106,13 @@ public class Benchmark {
         return array;
     }
 
+    /**
+    * Generates an array of floating point numbers based on the type
+    *
+    * @param size the size of the array
+    * @param type the type of the data in the array
+    * @return the generated array
+    */
     private static Float[] generateFloatArray(int size, sorting type) {
         Float[] array = new Float[size];
         Random rand = new Random();
