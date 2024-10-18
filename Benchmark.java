@@ -31,7 +31,9 @@ public class Benchmark {
     private enum sorting {
         RANDOM,
         SORTED,
-        REVERSE_SORTED
+        REVERSE_SORTED,
+        ALL_EQUAL,
+        BLOCK_SORTED
     }
 
     public static void main(String[] args) {
@@ -155,6 +157,23 @@ public class Benchmark {
                 array[i] = size - i;
             }
         }
+        else if(type == sorting.ALL_EQUAL){
+            Arrays.fill(array, 5);
+        }
+        else if(type == sorting.BLOCK_SORTED){
+            int blockSize = size / 4;
+
+            for (int i = 0; i < size; i += blockSize) {
+                Integer[] tmp = new Integer[blockSize];
+
+                for (int j = 0; j < tmp.length; j++) {
+                    tmp[j] = rand.nextInt(100);
+                }
+                Arrays.sort(tmp);
+
+                System.arraycopy(tmp, 0, array, i, blockSize);
+            }
+        }
         return array;
     }
 
@@ -187,7 +206,23 @@ public class Benchmark {
                 array[i] = j;
             }
             Arrays.sort(array, Collections.reverseOrder());
+        }
+        else if(type == sorting.ALL_EQUAL){
+            Arrays.fill(array, rand.nextFloat());
+        }
+        else if(type == sorting.BLOCK_SORTED){
+            int blockSize = size / 4;
 
+            for (int i = 0; i < size; i += blockSize) {
+                Float[] tmp = new Float[blockSize];
+
+                for (int j = 0; j < tmp.length; j++) {
+                    tmp[j] = rand.nextFloat();
+                }
+                Arrays.sort(tmp);
+
+                System.arraycopy(tmp, 0, array, i, blockSize);
+            }
         }
         return array;
     }
@@ -201,8 +236,10 @@ public class Benchmark {
         for (String sorterName : SORTER_NAMES) {
             System.out.println(sorterName);
             for (sorting type : sorting.values()) {
+
                 System.out.println(" Data Type: " + type);
                 for (int size : ARRAY_SIZES) {
+
                     List<Long> timings = results.get(sorterName).get(type).get(size);
                     double average = timings.stream().mapToLong(Long::longValue).average().orElse(0.0);
                     double median = calculateMedian(timings);
