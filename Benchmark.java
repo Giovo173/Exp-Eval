@@ -17,6 +17,13 @@ public class Benchmark {
             new SelectionSortGPT<>()
     );
 
+    private static final List<Sorter<Double>> DOUBLE_SORTERS = Arrays.asList(
+            new BubbleSortUntilNoChange<>(),
+            new BubbleSortWhileNeeded<>(),
+            new QuickSortGPT<>(),
+            new SelectionSortGPT<>()
+    );
+
     private static final List<String> SORTER_NAMES = Arrays.asList(
             "BubbleSortUntilNoChange",
             "BubbleSortWhileNeeded",
@@ -84,7 +91,11 @@ public class Benchmark {
         }
 
         reportResults(results);
+
+        //clear result array after pritning
         results.clear();
+
+        //sort float arrays
         for (int i = 0; i < FLOAT_SORTERS.size(); i++) {
 
             String sorterName = SORTER_NAMES.get(i);
@@ -127,7 +138,55 @@ public class Benchmark {
                 }
             }
         }
+        System.out.print("______________________________________________________________________");
+        reportResults(results);
 
+        results.clear();
+
+        //sort float arrays
+        for (int i = 0; i < DOUBLE_SORTERS.size(); i++) {
+
+            String sorterName = SORTER_NAMES.get(i);
+            results.put(sorterName, new HashMap<>());
+
+            for (sorting type : sorting.values()) {
+
+                results.get(sorterName).put(type, new HashMap<>());
+
+                for (int size : ARRAY_SIZES) {
+
+                    results.get(sorterName).get(type).put(size, new ArrayList<>());
+                }
+            }
+        }
+
+        for (int size : ARRAY_SIZES) {
+
+            for (sorting type : sorting.values()) {
+
+                Double[] baseArray = generateDoubleArray(size, type);
+
+                for (int run = 0; run < RUNS; run++) {
+
+                    for (int i = 0; i < SORTERS.size(); i++) {
+
+                        String sorterName = SORTER_NAMES.get(i);
+                        Sorter<Double> sorter = DOUBLE_SORTERS.get(i);
+
+                        Double[] arrayToSort = Arrays.copyOf(baseArray, baseArray.length);
+
+                        //measure
+                        long startTime = System.nanoTime();
+                        sorter.sort(arrayToSort);
+                        long endTime = System.nanoTime();
+                        long duration = endTime - startTime;
+
+                        results.get(sorterName).get(type).get(size).add(duration);
+                    }
+                }
+            }
+        }
+        System.out.print("______________________________________________________________________");
         reportResults(results);
     }
 
@@ -158,7 +217,7 @@ public class Benchmark {
             }
         }
         else if(type == sorting.ALL_EQUAL){
-            Arrays.fill(array, 5);
+            Arrays.fill(array, rand.nextInt());
         }
         else if(type == sorting.BLOCK_SORTED){
             int blockSize = size / 4;
@@ -193,6 +252,7 @@ public class Benchmark {
                 array[i] = rand.nextFloat();
             }
         }
+
         else if(type == sorting.SORTED){
             for(int i = 0; i < size; i++){
                 float j = rand.nextFloat();
@@ -200,6 +260,7 @@ public class Benchmark {
             }
             Arrays.sort(array);
         }
+
         else if(type == sorting.REVERSE_SORTED){
             for(int i = 0; i < size; i++){
                 float j = rand.nextFloat();
@@ -207,9 +268,13 @@ public class Benchmark {
             }
             Arrays.sort(array, Collections.reverseOrder());
         }
+
+        //fill array with
         else if(type == sorting.ALL_EQUAL){
             Arrays.fill(array, rand.nextFloat());
         }
+
+        //divide the array in 4 block, individually sort them and add to the array
         else if(type == sorting.BLOCK_SORTED){
             int blockSize = size / 4;
 
@@ -218,6 +283,62 @@ public class Benchmark {
 
                 for (int j = 0; j < tmp.length; j++) {
                     tmp[j] = rand.nextFloat();
+                }
+                Arrays.sort(tmp);
+
+                System.arraycopy(tmp, 0, array, i, blockSize);
+            }
+        }
+        return array;
+    }
+
+    /**
+     * Generates an array of double precision numbers based on the type
+     *
+     * @param size the size of the array
+     * @param type the type of the data in the array
+     * @return the generated array
+     */
+    private static Double[] generateDoubleArray(int size, sorting type) {
+        Double[] array = new Double[size];
+        Random rand = new Random();
+
+        if(type == sorting.RANDOM){
+            for (int i = 0; i < size; i++) {
+                array[i] = rand.nextDouble();
+            }
+        }
+
+        else if(type == sorting.SORTED){
+            for(int i = 0; i < size; i++){
+                double j = rand.nextDouble();
+                array[i] = j;
+            }
+            Arrays.sort(array);
+        }
+
+        else if(type == sorting.REVERSE_SORTED){
+            for(int i = 0; i < size; i++){
+                double j = rand.nextDouble();
+                array[i] = j;
+            }
+            Arrays.sort(array, Collections.reverseOrder());
+        }
+
+        //fill array with
+        else if(type == sorting.ALL_EQUAL){
+            Arrays.fill(array, rand.nextDouble());
+        }
+
+        //divide the array in 4 block, individually sort them and add to the array
+        else if(type == sorting.BLOCK_SORTED){
+            int blockSize = size / 4;
+
+            for (int i = 0; i < size; i += blockSize) {
+                Double[] tmp = new Double[blockSize];
+
+                for (int j = 0; j < tmp.length; j++) {
+                    tmp[j] = rand.nextDouble();
                 }
                 Arrays.sort(tmp);
 
