@@ -1,4 +1,7 @@
 // File: Benchmark.java
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.*;
 
 public class Benchmark {
@@ -91,6 +94,7 @@ public class Benchmark {
         }
 
         //insert results into csv
+        saveResultsToCsv(results, "integer_sort_results.csv");
 
         //clear result array after pritning
         results.clear();
@@ -139,6 +143,7 @@ public class Benchmark {
             }
         }
         //insert results into csv
+        saveResultsToCsv(results, "float_sort_results.csv");
         results.clear();
 
         //sort float arrays
@@ -185,6 +190,7 @@ public class Benchmark {
             }
         }
         //insert results into csv
+        saveResultsToCsv(results, "double_sort_results.csv");
     }
 
     /**
@@ -346,40 +352,36 @@ public class Benchmark {
     }
 
     /**
-     * Reports the benchmarking results by calculating descriptive statistics.
+     * Saves the benchmarking results to a CSV file.
      *
      * @param results the benchmarking results
+     * @param fileName the name of the output CSV file
      */
-    private static void reportResults(Map<String, Map<sorting, Map<Integer, List<Long>>>> results) {
-        for (String sorterName : SORTER_NAMES) {
-            System.out.println(sorterName);
+    private static void saveResultsToCsv(Map<String, Map<sorting, Map<Integer, List<Long>>>> results, String fileName) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
+            // Write CSV header
+            writer.write("Sorter,Sorting Type,Array Size,Run Number,Duration (ns)");
+            writer.newLine();
 
-            for (sorting type : sorting.values()) {
-                System.out.println(" Data Type: " + type);
-
-                for (int size : ARRAY_SIZES) {
-
-                    List<Long> timings = results.get(sorterName).get(type).get(size);
-                    double average = timings.stream().mapToLong(Long::longValue).average().orElse(0.0);
-
-                    double median = calculateMedian(timings);
-
-                    double min = timings.stream().mapToLong(Long::longValue).min().orElse(0L);
-
-                    double max = timings.stream().mapToLong(Long::longValue).max().orElse(0L);
-
-                    System.out.printf("    Size: %6d | Avg: %8.2f ms | Median: %8.2f ms | Min: %8.2f ms | Max: %8.2f ms%n",
-                            size,
-                            nanosToMillis(average),
-                            nanosToMillis(median),
-                            nanosToMillis(min),
-                            nanosToMillis(max));
+            // Iterate over results and write to the CSV
+            for (String sorterName : SORTER_NAMES) {
+                for (sorting type : sorting.values()) {
+                    for (int size : ARRAY_SIZES) {
+                        List<Long> timings = results.get(sorterName).get(type).get(size);
+                        for (int run = 0; run < timings.size(); run++) {
+                            long durationNanos = timings.get(run);
+                            double durationMillis = nanosToMillis(durationNanos);
+                            writer.write(String.format("%s,%s,%d,%d,%.2f", sorterName, type, size, run + 1, durationMillis));
+                            writer.newLine();
+                        }
+                    }
                 }
-                System.out.println();
             }
-            System.out.println();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
+
 
     /**
      * Calculates the median of a list of longs.
@@ -404,7 +406,7 @@ public class Benchmark {
      * @param nanos the time in nanoseconds
      * @return the time in milliseconds
      */
-    private static double nanosToMillis(double nanos) {
+    private static double nanosToMillis(long nanos) {
         return nanos / 1000000.0;
     }
 }
