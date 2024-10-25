@@ -90,7 +90,7 @@ public class Benchmark {
             }
         }
 
-        reportResults(results);
+        //insert results into csv
 
         //clear result array after pritning
         results.clear();
@@ -138,9 +138,7 @@ public class Benchmark {
                 }
             }
         }
-        System.out.print("______________________________________________________________________");
-        reportResults(results);
-
+        //insert results into csv
         results.clear();
 
         //sort float arrays
@@ -186,8 +184,7 @@ public class Benchmark {
                 }
             }
         }
-        System.out.print("______________________________________________________________________");
-        reportResults(results);
+        //insert results into csv
     }
 
     /**
@@ -356,15 +353,19 @@ public class Benchmark {
     private static void reportResults(Map<String, Map<sorting, Map<Integer, List<Long>>>> results) {
         for (String sorterName : SORTER_NAMES) {
             System.out.println(sorterName);
-            for (sorting type : sorting.values()) {
 
+            for (sorting type : sorting.values()) {
                 System.out.println(" Data Type: " + type);
+
                 for (int size : ARRAY_SIZES) {
 
                     List<Long> timings = results.get(sorterName).get(type).get(size);
                     double average = timings.stream().mapToLong(Long::longValue).average().orElse(0.0);
+
                     double median = calculateMedian(timings);
+
                     double min = timings.stream().mapToLong(Long::longValue).min().orElse(0L);
+
                     double max = timings.stream().mapToLong(Long::longValue).max().orElse(0L);
 
                     System.out.printf("    Size: %6d | Avg: %8.2f ms | Median: %8.2f ms | Min: %8.2f ms | Max: %8.2f ms%n",
