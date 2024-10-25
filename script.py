@@ -15,34 +15,35 @@ def plot_boxplots(csv_file):
     base_name = os.path.splitext(os.path.basename(csv_file))[0]
 
     # Set the plot style
-    sns.set_theme(style="whitegrid")
+    sns.set(style="whitegrid")
 
-    # Iterate through the unique array sizes and create separate plots
+    # Iterate through the unique array sizes and sorting types
     for array_size in df['Array Size'].unique():
-        # Filter the DataFrame for the current array size
-        df_size = df[df['Array Size'] == array_size]
+        for sorting_type in df['Sorting Type'].unique():
+            # Filter the DataFrame for the current array size and sorting type
+            df_filtered = df[(df['Array Size'] == array_size) & (df['Sorting Type'] == sorting_type)]
 
-        # Create a box plot
-        plt.figure(figsize=(12, 8))
-        sns.boxplot(
-            x='Sorting Type',
-            y='Duration (ns)',
-            hue='Sorter',
-            data=df_size,
-            showfliers=True  # Optionally, hide outliers
-        )
+            # Create a box plot
+            plt.figure(figsize=(12, 8))
+            sns.boxplot(
+                x='Sorter',
+                y='Duration (ns)',
+                data=df_filtered,
+                showfliers=True  # Optionally, hide outliers
+            )
 
-        # Set plot labels and title
-        plt.xlabel('Sorting Type')
-        plt.ylabel('Duration (ns)')
-        plt.title(f'Sorting Performance for Array Size {array_size}')
-        plt.legend(title='Sorter')
+            # Set plot labels and title
+            plt.xlabel('Sorter')
+            plt.ylabel('Duration (ns)')
+            plt.title(f'Sorting Performance for Array Size {array_size} ({sorting_type})')
+            plt.xticks(rotation=45)
+            plt.legend(title='Sorter')
 
-        # Save the plot to a file
-        output_file = f"{base_name}_size_{array_size}_boxplot.png"
-        plt.tight_layout()
-        plt.savefig(output_file)
-        plt.close()
+            # Save the plot to a file
+            output_file = f"{base_name}_size_{array_size}_{sorting_type}_boxplot.png"
+            plt.tight_layout()
+            plt.savefig(output_file)
+            plt.close()
 
 # Iterate through all CSV files in the current directory
 for csv_file in glob.glob("*.csv"):
