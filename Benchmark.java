@@ -1,4 +1,5 @@
 // File: Benchmark.java
+
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -36,7 +37,7 @@ public class Benchmark {
 
     private static final int[] ARRAY_SIZES = {1000, 5000, 10000};
 
-    private static final int RUNS = 10;
+    private static final int RUNS = 50;
 
     private enum sorting {
         RANDOM,
@@ -204,25 +205,21 @@ public class Benchmark {
         Integer[] array = new Integer[size];
         Random rand = new Random();
 
-        if(type == sorting.RANDOM){
+        if (type == sorting.RANDOM) {
             for (int i = 0; i < size; i++) {
                 array[i] = rand.nextInt();
             }
-        }
-        else if(type == sorting.SORTED){
+        } else if (type == sorting.SORTED) {
             for (int i = 0; i < size; i++) {
                 array[i] = i;
             }
-        }
-        else if(type == sorting.REVERSE_SORTED){
+        } else if (type == sorting.REVERSE_SORTED) {
             for (int i = 0; i < size; i++) {
                 array[i] = size - i;
             }
-        }
-        else if(type == sorting.ALL_EQUAL){
+        } else if (type == sorting.ALL_EQUAL) {
             Arrays.fill(array, rand.nextInt());
-        }
-        else if(type == sorting.BLOCK_SORTED){
+        } else if (type == sorting.BLOCK_SORTED) {
             int blockSize = size / 4;
 
             for (int i = 0; i < size; i += blockSize) {
@@ -240,45 +237,37 @@ public class Benchmark {
     }
 
     /**
-    * Generates an array of floating point numbers based on the type
-    *
-    * @param size the size of the array
-    * @param type the type of the data in the array
-    * @return the generated array
-    */
+     * Generates an array of floating point numbers based on the type
+     *
+     * @param size the size of the array
+     * @param type the type of the data in the array
+     * @return the generated array
+     */
     private static Float[] generateFloatArray(int size, sorting type) {
         Float[] array = new Float[size];
         Random rand = new Random();
 
-        if(type == sorting.RANDOM){
+        if (type == sorting.RANDOM) {
             for (int i = 0; i < size; i++) {
                 array[i] = rand.nextFloat();
             }
-        }
-
-        else if(type == sorting.SORTED){
-            for(int i = 0; i < size; i++){
+        } else if (type == sorting.SORTED) {
+            for (int i = 0; i < size; i++) {
                 float j = rand.nextFloat();
                 array[i] = j;
             }
             Arrays.sort(array);
-        }
-
-        else if(type == sorting.REVERSE_SORTED){
-            for(int i = 0; i < size; i++){
+        } else if (type == sorting.REVERSE_SORTED) {
+            for (int i = 0; i < size; i++) {
                 float j = rand.nextFloat();
                 array[i] = j;
             }
             Arrays.sort(array, Collections.reverseOrder());
-        }
-
-        //fill array with
-        else if(type == sorting.ALL_EQUAL){
+        } //fill array with
+        else if (type == sorting.ALL_EQUAL) {
             Arrays.fill(array, rand.nextFloat());
-        }
-
-        //divide the array in 4 block, individually sort them and add to the array
-        else if(type == sorting.BLOCK_SORTED){
+        } //divide the array in 4 block, individually sort them and add to the array
+        else if (type == sorting.BLOCK_SORTED) {
             int blockSize = size / 4;
 
             for (int i = 0; i < size; i += blockSize) {
@@ -306,35 +295,27 @@ public class Benchmark {
         Double[] array = new Double[size];
         Random rand = new Random();
 
-        if(type == sorting.RANDOM){
+        if (type == sorting.RANDOM) {
             for (int i = 0; i < size; i++) {
                 array[i] = rand.nextDouble();
             }
-        }
-
-        else if(type == sorting.SORTED){
-            for(int i = 0; i < size; i++){
+        } else if (type == sorting.SORTED) {
+            for (int i = 0; i < size; i++) {
                 double j = rand.nextDouble();
                 array[i] = j;
             }
             Arrays.sort(array);
-        }
-
-        else if(type == sorting.REVERSE_SORTED){
-            for(int i = 0; i < size; i++){
+        } else if (type == sorting.REVERSE_SORTED) {
+            for (int i = 0; i < size; i++) {
                 double j = rand.nextDouble();
                 array[i] = j;
             }
             Arrays.sort(array, Collections.reverseOrder());
-        }
-
-        //fill array with
-        else if(type == sorting.ALL_EQUAL){
+        } //fill array with
+        else if (type == sorting.ALL_EQUAL) {
             Arrays.fill(array, rand.nextDouble());
-        }
-
-        //divide the array in 4 block, individually sort them and add to the array
-        else if(type == sorting.BLOCK_SORTED){
+        } //divide the array in 4 block, individually sort them and add to the array
+        else if (type == sorting.BLOCK_SORTED) {
             int blockSize = size / 4;
 
             for (int i = 0; i < size; i += blockSize) {
@@ -360,7 +341,7 @@ public class Benchmark {
     private static void saveResultsToCsv(Map<String, Map<sorting, Map<Integer, List<Long>>>> results, String fileName) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
             // Write CSV header
-            writer.write("Sorter,Sorting Type,Array Size,Run Number,Duration (ns)");
+            writer.write("Sorter,Sorting Type,Array Size,Run Number,Duration (ms)");
             writer.newLine();
 
             // Iterate over results and write to the CSV
@@ -381,7 +362,6 @@ public class Benchmark {
             e.printStackTrace();
         }
     }
-
 
     /**
      * Calculates the median of a list of longs.
