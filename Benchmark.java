@@ -35,7 +35,7 @@ public class Benchmark {
             "SelectionSortGPT"
     );
 
-    private static final int[] ARRAY_SIZES = {1000, 5000, 10000};
+    private static final int[] ARRAY_SIZES = {1000, 5000, 10000, 20000};
 
     private static final int RUNS = 50;
 
@@ -49,9 +49,158 @@ public class Benchmark {
 
     public static void main(String[] args) {
         //   name      sort type   array length    data
+//        Map<String, Map<sorting, Map<Integer, List<Long>>>> results = new HashMap<>();
+        sort_int_array();
+//        for (int i = 0; i < SORTERS.size(); i++) {
+//
+//            String sorterName = SORTER_NAMES.get(i);
+//            results.put(sorterName, new HashMap<>());
+//
+//            for (sorting type : sorting.values()) {
+//
+//                results.get(sorterName).put(type, new HashMap<>());
+//
+//                for (int size : ARRAY_SIZES) {
+//
+//                    results.get(sorterName).get(type).put(size, new ArrayList<>());
+//                }
+//            }
+//        }
+//
+//        for (int size : ARRAY_SIZES) {
+//
+//            for (sorting type : sorting.values()) {
+//
+//                Integer[] baseArray = generateIntArray(size, type);
+//
+//                for (int run = 0; run < RUNS; run++) {
+//
+//                    for (int i = 0; i < SORTERS.size(); i++) {
+//
+//                        String sorterName = SORTER_NAMES.get(i);
+//                        Sorter<Integer> sorter = SORTERS.get(i);
+//
+//                        Integer[] arrayToSort = Arrays.copyOf(baseArray, baseArray.length);
+//
+//                        //measure
+//                        long startTime = System.nanoTime();
+//                        sorter.sort(arrayToSort);
+//                        long endTime = System.nanoTime();
+//                        long duration = endTime - startTime;
+//
+//                        results.get(sorterName).get(type).get(size).add(duration);
+//                    }
+//                }
+//            }
+//        }
+//
+//        //insert results into csv
+//        saveResultsToCsv(results, "integer_sort_results.csv");
+//
+//        //clear result array after pritning
+//        results.clear();
+
+        sort_float_array();
+
+//        //sort float arrays
+//        for (int i = 0; i < FLOAT_SORTERS.size(); i++) {
+//
+//            String sorterName = SORTER_NAMES.get(i);
+//            results.put(sorterName, new HashMap<>());
+//
+//            for (sorting type : sorting.values()) {
+//
+//                results.get(sorterName).put(type, new HashMap<>());
+//
+//                for (int size : ARRAY_SIZES) {
+//
+//                    results.get(sorterName).get(type).put(size, new ArrayList<>());
+//                }
+//            }
+//        }
+//
+//        for (int size : ARRAY_SIZES) {
+//
+//            for (sorting type : sorting.values()) {
+//
+//                Float[] baseArray = generateFloatArray(size, type);
+//
+//                for (int run = 0; run < RUNS; run++) {
+//
+//                    for (int i = 0; i < SORTERS.size(); i++) {
+//
+//                        String sorterName = SORTER_NAMES.get(i);
+//                        Sorter<Float> sorter = FLOAT_SORTERS.get(i);
+//
+//                        Float[] arrayToSort = Arrays.copyOf(baseArray, baseArray.length);
+//
+//                        //measure
+//                        long startTime = System.nanoTime();
+//                        sorter.sort(arrayToSort);
+//                        long endTime = System.nanoTime();
+//                        long duration = endTime - startTime;
+//
+//                        results.get(sorterName).get(type).get(size).add(duration);
+//                    }
+//                }
+//            }
+//        }
+//        //insert results into csv
+//        saveResultsToCsv(results, "float_sort_results.csv");
+//        results.clear();
+
+        //sort double arrays
+        sort_double_array();
+//        for (int i = 0; i < DOUBLE_SORTERS.size(); i++) {
+//
+//            String sorterName = SORTER_NAMES.get(i);
+//            results.put(sorterName, new HashMap<>());
+//
+//            for (sorting type : sorting.values()) {
+//
+//                results.get(sorterName).put(type, new HashMap<>());
+//
+//                for (int size : ARRAY_SIZES) {
+//
+//                    results.get(sorterName).get(type).put(size, new ArrayList<>());
+//                }
+//            }
+//        }
+//
+//        for (int size : ARRAY_SIZES) {
+//
+//            for (sorting type : sorting.values()) {
+//
+//                Double[] baseArray = generateDoubleArray(size, type);
+//
+//                for (int run = 0; run < RUNS; run++) {
+//
+//                    for (int i = 0; i < SORTERS.size(); i++) {
+//
+//                        String sorterName = SORTER_NAMES.get(i);
+//                        Sorter<Double> sorter = DOUBLE_SORTERS.get(i);
+//
+//                        Double[] arrayToSort = Arrays.copyOf(baseArray, baseArray.length);
+//
+//                        //measure
+//                        long startTime = System.nanoTime();
+//                        sorter.sort(arrayToSort);
+//                        long endTime = System.nanoTime();
+//                        long duration = endTime - startTime;
+//
+//                        results.get(sorterName).get(type).get(size).add(duration);
+//                    }
+//                }
+//            }
+//        }
+//        //insert results into csv
+//        saveResultsToCsv(results, "double_sort_results.csv");
+    }
+
+    private static void sort_double_array(){
         Map<String, Map<sorting, Map<Integer, List<Long>>>> results = new HashMap<>();
 
-        for (int i = 0; i < SORTERS.size(); i++) {
+        for (int i = 0; i < DOUBLE_SORTERS.size(); i++) {
 
             String sorterName = SORTER_NAMES.get(i);
             results.put(sorterName, new HashMap<>());
@@ -71,16 +220,16 @@ public class Benchmark {
 
             for (sorting type : sorting.values()) {
 
-                Integer[] baseArray = generateIntArray(size, type);
+                Double[] baseArray = generateDoubleArray(size, type);
 
                 for (int run = 0; run < RUNS; run++) {
 
                     for (int i = 0; i < SORTERS.size(); i++) {
 
                         String sorterName = SORTER_NAMES.get(i);
-                        Sorter<Integer> sorter = SORTERS.get(i);
+                        Sorter<Double> sorter = DOUBLE_SORTERS.get(i);
 
-                        Integer[] arrayToSort = Arrays.copyOf(baseArray, baseArray.length);
+                        Double[] arrayToSort = Arrays.copyOf(baseArray, baseArray.length);
 
                         //measure
                         long startTime = System.nanoTime();
@@ -93,13 +242,12 @@ public class Benchmark {
                 }
             }
         }
-
         //insert results into csv
-        saveResultsToCsv(results, "integer_sort_results.csv");
+        saveResultsToCsv(results, "double_sort_results.csv");
+    }
 
-        //clear result array after pritning
-        results.clear();
-
+    private static void sort_float_array(){
+        Map<String, Map<sorting, Map<Integer, List<Long>>>> results = new HashMap<>();
         //sort float arrays
         for (int i = 0; i < FLOAT_SORTERS.size(); i++) {
 
@@ -146,9 +294,12 @@ public class Benchmark {
         //insert results into csv
         saveResultsToCsv(results, "float_sort_results.csv");
         results.clear();
+    }
 
-        //sort float arrays
-        for (int i = 0; i < DOUBLE_SORTERS.size(); i++) {
+
+    private static void sort_int_array() {
+        Map<String, Map<sorting, Map<Integer, List<Long>>>> results = new HashMap<>();
+        for (int i = 0; i < SORTERS.size(); i++) {
 
             String sorterName = SORTER_NAMES.get(i);
             results.put(sorterName, new HashMap<>());
@@ -168,16 +319,16 @@ public class Benchmark {
 
             for (sorting type : sorting.values()) {
 
-                Double[] baseArray = generateDoubleArray(size, type);
+                Integer[] baseArray = generateIntArray(size, type);
 
                 for (int run = 0; run < RUNS; run++) {
 
                     for (int i = 0; i < SORTERS.size(); i++) {
 
                         String sorterName = SORTER_NAMES.get(i);
-                        Sorter<Double> sorter = DOUBLE_SORTERS.get(i);
+                        Sorter<Integer> sorter = SORTERS.get(i);
 
-                        Double[] arrayToSort = Arrays.copyOf(baseArray, baseArray.length);
+                        Integer[] arrayToSort = Arrays.copyOf(baseArray, baseArray.length);
 
                         //measure
                         long startTime = System.nanoTime();
@@ -190,9 +341,13 @@ public class Benchmark {
                 }
             }
         }
+
         //insert results into csv
-        saveResultsToCsv(results, "double_sort_results.csv");
+        saveResultsToCsv(results, "integer_sort_results.csv");
+        results.clear();
     }
+
+
 
     /**
      * Generates an array of integers based on the specified type.
