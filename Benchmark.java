@@ -37,7 +37,7 @@ public class Benchmark {
 
     private static final int[] ARRAY_SIZES = {1000, 5000, 10000};
 
-    private static final int RUNS = 50;
+    private static final int RUNS = 100;
 
     private enum sorting {
         RANDOM,
@@ -70,6 +70,7 @@ public class Benchmark {
 
         // Pre-generate arrays for each size and sorting type
         Map<sorting, Map<Integer, Integer[]>> preGeneratedArrays = new HashMap<>();
+        System.out.println("Generating int arrays...");
         for (sorting type : sorting.values()) {
             Map<Integer, Integer[]> arraysBySize = new HashMap<>();
             for (int size : ARRAY_SIZES) {
@@ -77,6 +78,8 @@ public class Benchmark {
             }
             preGeneratedArrays.put(type, arraysBySize);
         }
+        System.out.println("Arrays generated");
+
 
         // Initialize results structure
         for (int i = 0; i < SORTERS.size(); i++) {
@@ -126,6 +129,7 @@ public class Benchmark {
         Map<String, Map<sorting, Map<Integer, List<Long>>>> results = new HashMap<>();
 
         Map<sorting, Map<Integer, Float[]>> preGeneratedArrays = new HashMap<>();
+        System.out.println("Generating float arrays...");
         for (sorting type : sorting.values()) {
             Map<Integer, Float[]> arraysBySize = new HashMap<>();
             for (int size : ARRAY_SIZES) {
@@ -133,6 +137,8 @@ public class Benchmark {
             }
             preGeneratedArrays.put(type, arraysBySize);
         }
+        System.out.println("Arrays generated");
+
 
         for (int i = 0; i < FLOAT_SORTERS.size(); i++) {
             String sorterName = SORTER_NAMES.get(i);
@@ -175,6 +181,7 @@ public class Benchmark {
         Map<String, Map<sorting, Map<Integer, List<Long>>>> results = new HashMap<>();
 
         Map<sorting, Map<Integer, Double[]>> preGeneratedArrays = new HashMap<>();
+        System.out.println("Generating double arrays...");
         for (sorting type : sorting.values()) {
             Map<Integer, Double[]> arraysBySize = new HashMap<>();
             for (int size : ARRAY_SIZES) {
@@ -182,6 +189,8 @@ public class Benchmark {
             }
             preGeneratedArrays.put(type, arraysBySize);
         }
+        System.out.println("Arrays generated");
+
 
         for (int i = 0; i < DOUBLE_SORTERS.size(); i++) {
             String sorterName = SORTER_NAMES.get(i);
