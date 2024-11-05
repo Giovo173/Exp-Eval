@@ -37,7 +37,7 @@ public class Benchmark {
 
     private static final int[] ARRAY_SIZES = {1000, 5000, 10000};
 
-    private static final int RUNS = 100;
+    private static final int RUNS = 200;
 
     private enum sorting {
         RANDOM,
