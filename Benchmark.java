@@ -35,7 +35,7 @@ public class Benchmark {
             "SelectionSortGPT"
     );
 
-    private static final int[] ARRAY_SIZES = {1000, 5000, 10000};
+    private static final int[] ARRAY_SIZES = {500, 1000, 5000, 10000, 20000};
 
     private static final int RUNS = 200;
 
