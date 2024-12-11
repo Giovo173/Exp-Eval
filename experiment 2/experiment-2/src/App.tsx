@@ -79,15 +79,81 @@ const Ksentences = [
 ];
 
 const CCsentences = [
-  "move right",
-  "back up",
-  "back down",
-  "set profile information",
-  "create integer array",
-  "handle submit form",
-  "return format on click",
-  "handle default state change",
-  "print info to csv",
+  {
+    sentence: "move right",
+    choices: ["move-right", "move-rite", "move-wright", "move-write"],
+    correct: "move-right",
+  },
+  {
+    sentence: "back up",
+    choices: ["back-up", "bak-up", "back-upp", "back-up"],
+    correct: "back-up",
+  },
+  {
+    sentence: "back down",
+    choices: ["back-down", "bak-down", "back-dwon", "back-dawn"],
+    correct: "back-down",
+  },
+  {
+    sentence: "set profile information",
+    choices: [
+      "set-profile-information",
+      "set-profile-info",
+      "set-profile-informations",
+      "set-prof-info",
+    ],
+    correct: "set-profile-information",
+  },
+  {
+    sentence: "create integer array",
+    choices: [
+      "create-integer-array",
+      "create-int-array",
+      "create-integer-arr",
+      "create-integer-aray",
+    ],
+    correct: "create-integer-array",
+  },
+  {
+    sentence: "handle submit form",
+    choices: [
+      "handle-submit-form",
+      "handle-sub-form",
+      "handle-submit-frm",
+      "handle-submit-from",
+    ],
+    correct: "handle-submit-form",
+  },
+  {
+    sentence: "return format on click",
+    choices: [
+      "return-format-on-click",
+      "return-form-on-click",
+      "return-format-on-clik",
+      "return-format-on-clck",
+    ],
+    correct: "return-format-on-click",
+  },
+  {
+    sentence: "handle default state change",
+    choices: [
+      "handle-default-state-change",
+      "handle-def-state-change",
+      "handle-default-state-chng",
+      "handle-default-st-change",
+    ],
+    correct: "handle-default-state-change",
+  },
+  {
+    sentence: "print info to csv",
+    choices: [
+      "print-info-to-csv",
+      "print-infos-to-csv",
+      "print-info-to-csvv",
+      "print-info-to-cvs",
+    ],
+    correct: "print-info-to-csv",
+  },
 ];
 
 export default function App() {
@@ -108,7 +174,7 @@ export default function App() {
   function handleChoice(choice: string, correct: string) {
     setResults((prev) => [...prev, choice === correct]);
     setStep((prev) => prev + 1);
-    // /console.log(results);
+    // console.log(results);
   }
 
   return (
