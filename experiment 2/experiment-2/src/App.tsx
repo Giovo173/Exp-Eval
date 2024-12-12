@@ -195,6 +195,7 @@ export default function App() {
   const [unformattedTimer, setUnformattedTimer] = useState<number>(0);
   const [currentTimer, setCurrentTimer] = useState<number>(0);
   const [name, setName] = useState("");
+  const [canGoBack, setCanGoBack] = useState(false);
 
   useEffect(() => {
     let timer: NodeJS.Timeout;
@@ -603,12 +604,39 @@ export default function App() {
                   </span>
                 </p>
                 <div className="flex justify-center mt-4">
-                  <button
-                    onClick={saveResultsToCSV}
-                    className="p-2 bg-green-500 text-white rounded"
-                  >
-                    Save Results to CSV
-                  </button>
+                  {!canGoBack ? (
+                    <button
+                      onClick={() => {
+                        saveResultsToCSV();
+                        setCanGoBack(true);
+                      }}
+                      className="p-2 bg-green-500 text-white rounded"
+                    >
+                      Save Results to CSV
+                    </button>
+                  ) : (
+                    <button
+                      onClick={() => {
+                        setStep(0);
+                        setCanGoBack(false);
+                        setAge(0);
+                        setGender("");
+                        setExpertise("");
+                        setErrorMsg("");
+                        setKResults([]);
+                        setCCResults([]);
+                        setStartTime(null);
+                        setKTimes([]);
+                        setCCTimes([]);
+                        setUnformattedTimer(0);
+                        setCurrentTimer(0);
+                        setName("");
+                      }}
+                      className="p-2 bg-green-500 text-white rounded"
+                    >
+                      Go Back
+                    </button>
+                  )}
                 </div>
               </div>
             </>
