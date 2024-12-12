@@ -323,7 +323,8 @@ export default function App() {
                 </p>
                 <br />
                 <p className="text-left text-green-400/80">
-                  // here is an example
+                  // here is an example (the word "function" is{" "}
+                  <span className="underline">not</span> part of the name)
                 </p>
                 <br />
                 <div className="flex justify-center">
