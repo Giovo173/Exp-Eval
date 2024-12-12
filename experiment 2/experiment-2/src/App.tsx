@@ -305,7 +305,7 @@ export default function App() {
                 <p className="text-left text-green-400/80">
                   // You will be shown a sentence, read it carefully and
                   remember it. <br />
-                  // Only after that, you can press continue.
+                  // When ready, click "Ready".
                 </p>
                 <br />
                 <p className="text-left text-green-400/80">
@@ -366,7 +366,7 @@ export default function App() {
                     </label>
                     <input
                       type="text"
-                      className="mt-1 text-emerald-200 p-2 border-b-2 bg-slate-800 border-yellow-500 focus:outline-none focus:border-yellow-600 appearance-none"
+                      className="mt-1 text-emerald-200 p-2 border-b-2 bg-slate-800 border-gray-500 focus:outline-none focus:border-gray-600 appearance-none"
                       value={name}
                       placeholder="Enter your name"
                       onChange={(e) => setName(e.target.value)}
@@ -380,7 +380,7 @@ export default function App() {
                     </label>
                     <input
                       type="text"
-                      className="mt-1 text-emerald-200 p-2 border-b-2 bg-slate-800 border-yellow-500 focus:outline-none focus:border-yellow-600 appearance-none"
+                      className="mt-1 text-emerald-200 p-2 border-b-2 bg-slate-800 border-gray-500 focus:outline-none focus:border-gray-600 appearance-none"
                       value={age}
                       placeholder="Enter your age"
                       maxLength={2}
@@ -399,7 +399,7 @@ export default function App() {
                       <span className="text-blue-300">your-gender</span> =
                     </label>
                     <select
-                      className="mt-1 text-emerald-200 p-2 border-b-2 bg-slate-800 border-yellow-500 focus:outline-none focus:border-yellow-600 appearance-none"
+                      className="mt-1 text-emerald-200 p-2 border-b-2 bg-slate-800 border-gray-500 focus:outline-none focus:border-gray-600 appearance-none"
                       value={gender}
                       onChange={(e) => setGender(e.target.value)}
                     >
@@ -421,7 +421,7 @@ export default function App() {
                       <span className="text-blue-300">your-expertise</span> =
                     </label>
                     <select
-                      className="mt-1 text-emerald-200 p-2 border-b-2 bg-slate-800 border-yellow-500 focus:outline-none focus:border-yellow-600 appearance-none"
+                      className="mt-1 text-emerald-200 p-2 border-b-2 bg-slate-800 border-gray-500 focus:outline-none focus:border-gray-600 appearance-none"
                       value={expertise}
                       onChange={(e) => setExpertise(e.target.value)}
                     >
