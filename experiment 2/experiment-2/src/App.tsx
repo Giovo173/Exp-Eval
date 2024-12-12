@@ -161,7 +161,8 @@ export default function App() {
   const [age, setAge] = useState(0);
   const [gender, setGender] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
-  const [results, setResults] = useState([]);
+  const [Kresults, setKResults] = useState([]);
+  const [CCresults, setCCResults] = useState([]);
 
   function handleSubmit() {
     if (age === 0 || gender === "")
@@ -171,10 +172,13 @@ export default function App() {
     setErrorMsg("");
   }
 
-  function handleChoice(choice: string, correct: string) {
-    setResults((prev) => [...prev, choice === correct]);
+  function handleChoice(choice: string, correct: string, isKebab: boolean) {
+    if (isKebab) {
+      setKResults((prev) => [...prev, choice === correct]);
+    } else {
+      setCCResults((prev) => [...prev, choice === correct]);
+    }
     setStep((prev) => prev + 1);
-    // console.log(results);
   }
 
   return (
@@ -282,58 +286,87 @@ export default function App() {
               </div>
             </>
           )}
-          {step >= 2 && step < Ksentences.length * 2 + 2 && (
-            <>
-              <div className="text-xl">
-                {step % 2 === 0 ? (
-                  <>
-                    <h2 className="font-bold text-2xl text-center">
-                      Read the sentence carefully
-                    </h2>
-                    <br />
-                    <p className="text-center">
-                      {Ksentences[Math.floor((step - 2) / 2)].sentence}
-                    </p>
-                    <br />
-                    <div className="flex justify-center">
-                      <button
-                        onClick={() => setStep((prev) => prev + 1)}
-                        className="p-2 bg-green-500 text-white rounded"
-                      >
-                        Next
-                      </button>
-                    </div>
-                  </>
-                ) : (
-                  <>
-                    <h2 className="font-bold text-2xl text-center">
-                      Select the correct sentence
-                    </h2>
-                    <br />
-                    <div className="space-y-4">
-                      {Ksentences[Math.floor((step - 2) / 2)].choices.map(
-                        (choice, index) => (
-                          <button
-                            key={index}
-                            onClick={() =>
-                              handleChoice(
-                                choice,
-                                Ksentences[Math.floor((step - 2) / 2)].correct
+          {step >= 2 &&
+            step < Ksentences.length * 2 + CCsentences.length * 2 + 2 && (
+              <>
+                <div className="text-xl">
+                  {step % 2 === 0 ? (
+                    <>
+                      <h2 className="font-bold text-2xl text-center">
+                        Read the sentence carefully
+                      </h2>
+                      <br />
+                      <p className="text-center">
+                        {step < Ksentences.length * 2 + 2
+                          ? Ksentences[Math.floor((step - 2) / 2)].sentence
+                          : CCsentences[
+                              Math.floor((step - Ksentences.length * 2 - 2) / 2)
+                            ].sentence}
+                      </p>
+                      <br />
+                      <div className="flex justify-center">
+                        <button
+                          onClick={() => setStep((prev) => prev + 1)}
+                          className="p-2 bg-green-500 text-white rounded"
+                        >
+                          Next
+                        </button>
+                      </div>
+                    </>
+                  ) : (
+                    <>
+                      <h2 className="font-bold text-2xl text-center">
+                        Select the correct sentence
+                      </h2>
+                      <br />
+                      <div className="space-y-4">
+                        {step < Ksentences.length * 2 + 2
+                          ? Ksentences[Math.floor((step - 2) / 2)].choices.map(
+                              (choice, index) => (
+                                <button
+                                  key={index}
+                                  onClick={() =>
+                                    handleChoice(
+                                      choice,
+                                      Ksentences[Math.floor((step - 2) / 2)]
+                                        .correct,
+                                      true
+                                    )
+                                  }
+                                  className="block w-full p-2 bg-blue-500 text-white rounded"
+                                >
+                                  {choice}
+                                </button>
                               )
-                            }
-                            className="block w-full p-2 bg-blue-500 text-white rounded"
-                          >
-                            {choice}
-                          </button>
-                        )
-                      )}
-                    </div>
-                  </>
-                )}
-              </div>
-            </>
-          )}
-          {step >= Ksentences.length * 2 + 2 && (
+                            )
+                          : CCsentences[
+                              Math.floor((step - Ksentences.length * 2 - 2) / 2)
+                            ].choices.map((choice, index) => (
+                              <button
+                                key={index}
+                                onClick={() =>
+                                  handleChoice(
+                                    choice,
+                                    CCsentences[
+                                      Math.floor(
+                                        (step - Ksentences.length * 2 - 2) / 2
+                                      )
+                                    ].correct,
+                                    false
+                                  )
+                                }
+                                className="block w-full p-2 bg-blue-500 text-white rounded"
+                              >
+                                {choice}
+                              </button>
+                            ))}
+                      </div>
+                    </>
+                  )}
+                </div>
+              </>
+            )}
+          {step >= Ksentences.length * 2 + CCsentences.length * 2 + 2 && (
             <>
               <div className="text-xl">
                 <h2 className="font-bold text-2xl text-center">
@@ -345,8 +378,12 @@ export default function App() {
                 </p>
                 <br />
                 <p className="text-center">
-                  Your results: {results.filter((result) => result).length} out
-                  of {results.length} correct.
+                  Your results: {Kresults.filter((result) => result).length} out
+                  of {Kresults.length} correct for kebab-case.
+                </p>
+                <p className="text-center">
+                  Your results: {CCresults.filter((result) => result).length}{" "}
+                  out of {CCresults.length} correct for camelCase.
                 </p>
               </div>
             </>
