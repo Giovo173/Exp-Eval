@@ -98,6 +98,8 @@ const Ksentences = [
   },
 ];
 
+// he;;p
+
 const CCsentences = [
   {
     sentence: "move right",
@@ -180,6 +182,7 @@ export default function App() {
   const [step, setStep] = useState(0);
   const [age, setAge] = useState(0);
   const [gender, setGender] = useState("");
+  const [expertise, setExpertise] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
   const [Kresults, setKResults] = useState([]);
   const [CCresults, setCCResults] = useState([]);
@@ -207,7 +210,7 @@ export default function App() {
   }, [unformattedTimer]);
 
   function handleSubmit() {
-    if (age === 0 || gender === "")
+    if (age === 0 || gender === "" || expertise === "")
       return setErrorMsg("Please fill all the fields");
 
     setStep((prev) => prev + 1);
@@ -230,13 +233,25 @@ export default function App() {
 
   function saveResultsToCSV() {
     const data = [
-      ["Type", "Sentence", "Choice", "Correct", "Time Spent (s)"],
+      [
+        "Type",
+        "Sentence",
+        "Choice",
+        "Correct",
+        "Time Spent (s)",
+        "Age",
+        "Gender",
+        "Expertise",
+      ],
       ...Kresults.map((result, index) => [
         "kebab-case",
         Ksentences[index].sentence,
         result ? Ksentences[index].correct : "Incorrect",
         result ? "Correct" : "Incorrect",
         Ktimes[index],
+        index === 0 ? age : "",
+        index === 0 ? gender : "",
+        index === 0 ? expertise : "",
       ]),
       ...CCresults.map((result, index) => [
         "camelCase",
@@ -244,6 +259,9 @@ export default function App() {
         result ? CCsentences[index].correct : "Incorrect",
         result ? "Correct" : "Incorrect",
         CCtimes[index],
+        index === 0 ? age : "",
+        index === 0 ? gender : "",
+        index === 0 ? expertise : "",
       ]),
     ];
 
@@ -257,95 +275,128 @@ export default function App() {
       <div className="bg-gray-200 flex items-center justify-center min-h-screen">
         <div className="fixed top-0 left-0 right-0 bg-white shadow-md p-4">
           <h1 className="text-4xl font-bold text-center">Experiment 2</h1>
-          {step >= 2 && step % 2 === 1 && (
-            <div className="text-center mt-2">
-              <p>Time spent on this choice: {currentTimer} seconds</p>
-            </div>
-          )}
         </div>
         <div className="mt-16 p-4">
           {step === 0 && (
             <>
-              <div className="text-xl">
-                <h1 className="font-bold text-3xl text-center">
+              <div className="text-xl bg-slate-800 p-5 pt-7 pb-7 rounded-3xl font-mono text-white">
+                <h1 className="font-bold text-3xl text-center text-amber-300">
                   Welcome to Experiment 2: CamelCase vs kebab-case
                 </h1>
                 <br />
-                <p>
-                  In this experiment, we will be comparing the readability of
-                  camelCase and kebab-case. We will be using React to
-                  demonstrate this.
+                <p className="text-left text-green-400/80">
+                  // In this experiment, we will be comparing the readability of
+                  <br />
+                  // camelCase and kebab-case. We will be using React to
+                  <br />
+                  // demonstrate this.
                 </p>
                 <br />
-                <p>
-                  You will be asked for some personal information in the next
-                  step. After that, the experiment will begin.
+                <p className="text-left text-green-400/80">
+                  // You will be asked for some personal information in the next
+                  <br />
+                  // step. After that, the experiment will begin.
                 </p>
                 <br />
-                <p>
-                  You will be shown a sentence, read it carefully and remember
-                  it. <br />
-                  Only after that, you can press continue.
+                <p className="text-left text-green-400/80">
+                  // You will be shown a sentence, read it carefully and
+                  remember it. <br />
+                  // Only after that, you can press continue.
                 </p>
                 <br />
-                <p>
-                  At this point you will be shown some options among which you
-                  will have to find <br />
-                  the sentence you read earlier.
+                <p className="text-left text-green-400/80">
+                  // At this point you will be shown some options among which
+                  you
+                  <br />
+                  // will have to find the sentence you read earlier.
                 </p>
                 <br />
-                <p>
-                  Select the correct; the experiment will proceed in this way
-                  untill completion.
+                <p className="text-left text-green-400/80">
+                  // Select the correct one
+                  <br />
+                  <br />
+                  // the experiment will proceed in this way until completion.
                 </p>
               </div>
             </>
           )}
           {step === 1 && (
             <>
-              <div className="text-xl">
-                <h2 className="font-bold text-2xl text-center">
+              <div className="text-xl bg-slate-800 p-5 pt-7 pb-7 rounded-3xl font-mono text-white">
+                <h2 className="font-bold text-3xl text-center text-amber-300">
                   Personal Information
                 </h2>
                 <br />
                 <form className="space-y-4">
-                  <div>
-                    <label className="block text-lg font-medium">Age:</label>
+                  <div className="flex items-center space-x-4">
+                    <label className="text-lg font-medium">
+                      {" "}
+                      <span className="text-blue-500">let </span>
+                      <span className="text-blue-300">your-age</span> =
+                    </label>
                     <input
-                      type="number"
-                      className="mt-1 p-2 w-full border rounded"
+                      type="text"
+                      className="mt-1 text-emerald-200 p-2 border-b-2 bg-slate-800 border-yellow-500 focus:outline-none focus:border-yellow-600 appearance-none"
                       value={age}
                       placeholder="Enter your age"
-                      min="0"
-                      onChange={(e) => setAge(parseInt(e.target.value))}
+                      maxLength={2}
+                      onChange={(e) => {
+                        const value = e.target.value;
+                        if (/^\d{0,2}$/.test(value)) {
+                          setAge(parseInt(value) || 0);
+                        }
+                      }}
                     />
                   </div>
-                  <div>
-                    <label className="block text-lg font-medium">Gender:</label>
-                    <div className="mt-1">
-                      <label className="inline-flex items-center">
-                        <input
-                          type="radio"
-                          name="gender"
-                          value="male"
-                          className="form-radio"
-                          checked={gender === "male"}
-                          onChange={(e) => setGender(e.target.value)}
-                        />
-                        <span className="ml-2">Male</span>
-                      </label>
-                      <label className="inline-flex items-center ml-4">
-                        <input
-                          type="radio"
-                          name="gender"
-                          value="female"
-                          className="form-radio"
-                          checked={gender === "female"}
-                          onChange={(e) => setGender(e.target.value)}
-                        />
-                        <span className="ml-2">Female</span>
-                      </label>
-                    </div>
+                  <div className="flex items-center space-x-4">
+                    <label className="text-lg font-medium">
+                      {" "}
+                      <span className="text-blue-500">let </span>
+                      <span className="text-blue-300">your-gender</span> =
+                    </label>
+                    <select
+                      className="mt-1 text-emerald-200 p-2 border-b-2 bg-slate-800 border-yellow-500 focus:outline-none focus:border-yellow-600 appearance-none"
+                      value={gender}
+                      onChange={(e) => setGender(e.target.value)}
+                    >
+                      <option value="" className="text-lg">
+                        Select your gender
+                      </option>
+                      <option value="male" className="text-lg">
+                        Male
+                      </option>
+                      <option value="female" className="text-lg">
+                        Female
+                      </option>
+                    </select>
+                  </div>
+                  <div className="flex items-center space-x-4">
+                    <label className="text-lg font-medium">
+                      {" "}
+                      <span className="text-blue-500">let </span>
+                      <span className="text-blue-300">your-expertise</span> =
+                    </label>
+                    <select
+                      className="mt-1 text-emerald-200 p-2 border-b-2 bg-slate-800 border-yellow-500 focus:outline-none focus:border-yellow-600 appearance-none"
+                      value={expertise}
+                      onChange={(e) => setExpertise(e.target.value)}
+                    >
+                      <option value="" className="text-lg">
+                        Select
+                      </option>
+                      <option value="never coded" className="text-lg">
+                        Never coded
+                      </option>
+                      <option value="beginner" className="text-lg">
+                        Beginner
+                      </option>
+                      <option value="intermediate" className="text-lg">
+                        Intermediate
+                      </option>
+                      <option value="expert" className="text-lg">
+                        Expert
+                      </option>
+                    </select>
                   </div>
                   <div className="flex justify-center">
                     <button
@@ -369,15 +420,17 @@ export default function App() {
                   {step % 2 === 0 ? (
                     <>
                       <h2 className="font-bold text-2xl text-center">
-                        Read the sentence carefully
+                        Read the name carefully
                       </h2>
                       <br />
-                      <p className="text-center">
+                      <p className="text-center font-mono bg-slate-800 rounded-xl p-4 text-amber-300">
+                        <span className="text-blue-400">function </span>
                         {step < Ksentences.length * 2 + 2
                           ? Ksentences[Math.floor((step - 2) / 2)].sentence
                           : CCsentences[
                               Math.floor((step - Ksentences.length * 2 - 2) / 2)
                             ].sentence}
+                        <span className="text-yellow-300">()</span>
                       </p>
                       <br />
                       <div className="flex justify-center">
@@ -385,15 +438,30 @@ export default function App() {
                           onClick={() => setStep((prev) => prev + 1)}
                           className="p-2 bg-green-500 text-white rounded"
                         >
-                          Next
+                          Ready
                         </button>
                       </div>
                     </>
                   ) : (
                     <>
                       <h2 className="font-bold text-2xl text-center">
-                        Select the correct sentence
+                        Select the correct name
                       </h2>
+                      {step >= 2 && step % 2 === 1 && (
+                        <div className="text-center mt-2">
+                          <p
+                            className={`text-lg font-bold ${
+                              currentTimer < 5
+                                ? "text-green-500"
+                                : currentTimer < 10
+                                ? "text-orange-500"
+                                : "text-red-500"
+                            }`}
+                          >
+                            {currentTimer} s
+                          </p>
+                        </div>
+                      )}
                       <br />
                       <div className="space-y-4">
                         {step < Ksentences.length * 2 + 2
@@ -409,7 +477,7 @@ export default function App() {
                                       true
                                     )
                                   }
-                                  className="block w-full p-2 bg-blue-500 text-white rounded"
+                                  className="block w-full p-2 text-white bg-slate-800 hover:text-amber-300 font-mono rounded transition ease-in-out duration-150"
                                 >
                                   {choice}
                                 </button>
@@ -431,7 +499,7 @@ export default function App() {
                                     false
                                   )
                                 }
-                                className="block w-full p-2 bg-blue-500 text-white rounded"
+                                className="block w-full p-2 text-white bg-slate-800 hover:text-amber-300 font-mono rounded transition ease-in-out duration-150"
                               >
                                 {choice}
                               </button>
@@ -444,30 +512,51 @@ export default function App() {
             )}
           {step >= Ksentences.length * 2 + CCsentences.length * 2 + 2 && (
             <>
-              <div className="text-xl">
-                <h2 className="font-bold text-2xl text-center">
+              <div className="text-xl bg-slate-800 p-5 rounded-3xl font-mono text-white">
+                <h2 className="font-bold text-3xl text-center text-amber-300">
                   Experiment Completed
                 </h2>
                 <br />
-                <p className="text-center">
-                  Thank you for participating in the experiment.
+                <p className="text-center font-bold">
+                  Thank you <span className="text-fuchsia-300/80">for</span>{" "}
+                  participating <span className="text-fuchsia-300/80">in</span>{" "}
+                  the experiment.
                 </p>
                 <br />
-                <p className="text-center">
-                  Your results: {Kresults.filter((result) => result).length} out
-                  of {Kresults.length} correct for kebab-case.
+                <p className="text-left">
+                  <span className="text-blue-500">let </span>
+                  <span className="text-blue-300">your-results</span> ={" "}
+                  <span className="text-yellow-600/90">
+                    "{Kresults.filter((result) => result).length} out of{" "}
+                    {Kresults.length} correct for kebab-case."
+                  </span>
                 </p>
-                <p className="text-center">
-                  Your results: {CCresults.filter((result) => result).length}{" "}
-                  out of {CCresults.length} correct for camelCase.
+                <p className="text-left">
+                  <span className="text-blue-500">let </span>
+                  <span className="text-blue-300">yourResults</span> ={" "}
+                  <span className="text-yellow-600/90">
+                    "{CCresults.filter((result) => result).length} out of{" "}
+                    {CCresults.length} correct for camelCase".
+                  </span>
                 </p>
-                <p className="text-center">
-                  Time spent on kebab-case: {Ktimes.reduce((a, b) => a + b, 0)}{" "}
-                  seconds
+                <p className="text-left">
+                  <span className="text-blue-500">var </span>
+                  <span className="text-blue-300">
+                    time-spent-on-kebab-case
+                  </span>{" "}
+                  ={" "}
+                  <span className="text-emerald-200">
+                    {Ktimes.reduce((a, b) => a + b, 0).toFixed(3)} seconds
+                  </span>
                 </p>
-                <p className="text-center">
-                  Time spent on camelCase: {CCtimes.reduce((a, b) => a + b, 0)}{" "}
-                  seconds
+                <p className="text-left">
+                  <span className="text-blue-500">var </span>
+                  <span className="text-blue-300">
+                    timeSpentOnCamelCase
+                  </span> ={" "}
+                  <span className="text-emerald-200">
+                    {CCtimes.reduce((a, b) => a + b, 0).toFixed(3)} seconds
+                  </span>
                 </p>
                 <div className="flex justify-center mt-4">
                   <button
@@ -484,7 +573,7 @@ export default function App() {
             {step > 0 && step < 2 && (
               <button
                 onClick={() => setStep((prev) => (prev > 0 ? prev - 1 : prev))}
-                className="mr-2 p-2 bg-red-500 text-white rounded"
+                className="p-2 bg-red-500 text-white rounded"
               >
                 Previous
               </button>
