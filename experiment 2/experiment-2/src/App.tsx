@@ -194,6 +194,7 @@ export default function App() {
   const [CCtimes, setCCTimes] = useState<number[]>([]);
   const [unformattedTimer, setUnformattedTimer] = useState<number>(0);
   const [currentTimer, setCurrentTimer] = useState<number>(0);
+  const [name, setName] = useState("");
 
   useEffect(() => {
     let timer: NodeJS.Timeout;
@@ -270,7 +271,7 @@ export default function App() {
 
     const csv = Papa.unparse(data);
     const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
-    saveAs(blob, "experiment_results.csv");
+    saveAs(blob, `${name.replace(/\s+/g, "_")}_results.csv`);
   }
 
   return (
@@ -356,6 +357,20 @@ export default function App() {
                 </h2>
                 <br />
                 <form className="space-y-4">
+                  <div className="flex items-center space-x-4">
+                    <label className="text-lg font-medium">
+                      {" "}
+                      <span className="text-blue-500">let </span>
+                      <span className="text-blue-300">your-name</span> =
+                    </label>
+                    <input
+                      type="text"
+                      className="mt-1 text-emerald-200 p-2 border-b-2 bg-slate-800 border-yellow-500 focus:outline-none focus:border-yellow-600 appearance-none"
+                      value={name}
+                      placeholder="Enter your name"
+                      onChange={(e) => setName(e.target.value)}
+                    />
+                  </div>
                   <div className="flex items-center space-x-4">
                     <label className="text-lg font-medium">
                       {" "}
