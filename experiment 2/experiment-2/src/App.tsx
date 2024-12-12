@@ -1,6 +1,9 @@
+/* eslint-disable react/jsx-no-comment-textnodes */
 import React, { useState, useEffect } from "react";
 import Papa from "papaparse";
 import { saveAs } from "file-saver";
+import img from "./example1.png";
+import img2 from "./example2.png";
 
 const shuffleArray = (array: any[]) => {
   for (let i = array.length - 1; i > 0; i--) {
@@ -272,9 +275,11 @@ export default function App() {
 
   return (
     <>
-      <div className="bg-gray-200 flex items-center justify-center min-h-screen">
-        <div className="fixed top-0 left-0 right-0 bg-white shadow-md p-4">
-          <h1 className="text-4xl font-bold text-center">Experiment 2</h1>
+      <div className="bg-gray-900 flex items-center justify-center min-h-screen">
+        <div className=" bg-zinc-900 fixed top-0 left-0 right-0  shadow-md p-4">
+          <h1 className="text-4xl font-bold text-center text-yellow-500 font-mono">
+            Experiment 2
+          </h1>
         </div>
         <div className="mt-16 p-4">
           {step === 0 && (
@@ -287,9 +292,7 @@ export default function App() {
                 <p className="text-left text-green-400/80">
                   // In this experiment, we will be comparing the readability of
                   <br />
-                  // camelCase and kebab-case. We will be using React to
-                  <br />
-                  // demonstrate this.
+                  // camelCase and kebab-case.
                 </p>
                 <br />
                 <p className="text-left text-green-400/80">
@@ -316,6 +319,31 @@ export default function App() {
                   <br />
                   <br />
                   // the experiment will proceed in this way until completion.
+                </p>
+                <br />
+                <p className="text-left text-green-400/80">
+                  // here is an example
+                </p>
+                <br />
+                <div className="flex justify-center">
+                  <img src={img} alt="Example" className="rounded-lg" />
+                </div>
+                <br />
+                <p className="text-left text-green-400/80">
+                  // you will then be asked to select the correct name from the
+                  proposals
+                </p>
+                <br />
+                <div className="flex justify-center">
+                  <img src={img2} alt="Example" className="rounded-lg" />
+                </div>
+                <br />
+                <p className="text-left text-green-400/80">
+                  // proceed through the experiment and try to complete it
+                  <br />
+                  // in a timely manner
+                  <br />
+                  // Thank you for participating
                 </p>
               </div>
             </>
@@ -419,7 +447,7 @@ export default function App() {
                 <div className="text-xl">
                   {step % 2 === 0 ? (
                     <>
-                      <h2 className="font-bold text-2xl text-center">
+                      <h2 className="font-bold text-3xl text-center text-white">
                         Read the name carefully
                       </h2>
                       <br />
@@ -436,7 +464,7 @@ export default function App() {
                       <div className="flex justify-center">
                         <button
                           onClick={() => setStep((prev) => prev + 1)}
-                          className="p-2 bg-green-500 text-white rounded"
+                          className="p-2 bg-green-700 text-gray-200 rounded"
                         >
                           Ready
                         </button>
@@ -444,13 +472,13 @@ export default function App() {
                     </>
                   ) : (
                     <>
-                      <h2 className="font-bold text-2xl text-center">
+                      <h2 className="font-bold text-3xl text-white text-center">
                         Select the correct name
                       </h2>
                       {step >= 2 && step % 2 === 1 && (
                         <div className="text-center mt-2">
                           <p
-                            className={`text-lg font-bold ${
+                            className={`text-lg font-bold font-mono ${
                               currentTimer < 5
                                 ? "text-green-500"
                                 : currentTimer < 10
