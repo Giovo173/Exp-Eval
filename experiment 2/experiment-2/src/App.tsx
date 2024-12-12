@@ -454,6 +454,9 @@ export default function App() {
                       Submit
                     </button>
                   </div>
+                  <div className="flex justify-center font-mono text-red-500 text-sm">
+                    {errorMsg}
+                  </div>
                 </form>
               </div>
             </>
@@ -645,23 +648,20 @@ export default function App() {
             {step > 0 && step < 2 && (
               <button
                 onClick={() => setStep((prev) => (prev > 0 ? prev - 1 : prev))}
-                className="p-2 bg-red-500 text-white rounded"
+                className="p-2 bg-none text-red-500 font-mono rounded flex items-center"
               >
-                Previous
+                &lt; Back
               </button>
             )}
             {step !== 1 && step < 2 && (
               <button
                 onClick={() => setStep((prev) => (prev < 2 ? prev + 1 : prev))}
-                className="p-2 bg-green-500 text-white rounded"
+                className="p-2 bg-green-500 text-white rounded w-32"
               >
-                Next
+                Start
               </button>
             )}
             <br />
-          </div>
-          <div className="flex justify-center">
-            <span className="text-red-600">{errorMsg}</span>
           </div>
         </div>
       </div>
