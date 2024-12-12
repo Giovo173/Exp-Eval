@@ -278,7 +278,7 @@ export default function App() {
   return (
     <>
       <div className="bg-gray-900 flex items-center justify-center min-h-screen">
-        <div className=" bg-zinc-900 fixed top-0 left-0 right-0  shadow-md p-4">
+        <div className=" bg-zinc-900 fixed top-0 left-0 right-0  shadow-md p-4 over">
           <h1 className="text-4xl font-bold text-center text-yellow-500 font-mono">
             Experiment 2
           </h1>
