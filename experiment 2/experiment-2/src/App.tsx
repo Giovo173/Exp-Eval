@@ -111,7 +111,7 @@ const CCsentences = [
   },
   {
     sentence: "back up",
-    choices: shuffleArray(["backUpp", "backUp", "backUp", "bakUp"]),
+    choices: shuffleArray(["backUpp", "backUp", "beckUp", "bakUp"]),
     correct: "backUp",
   },
   {
