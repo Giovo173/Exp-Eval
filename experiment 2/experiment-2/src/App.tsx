@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-no-comment-textnodes */
 import React, { useState, useEffect } from "react";
 import Papa from "papaparse";
 import { saveAs } from "file-saver";
