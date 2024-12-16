@@ -9,7 +9,7 @@ kebab-case,handle default error message,handle-default-error-message,Correct,4.0
 kebab-case,return format on click,Incorrect,Incorrect,3.082,,,
 kebab-case,format info into normal,Incorrect,Incorrect,6.08,,,
 camelCase,move right,moveRight,Correct,3.606,31,male,beginner
-camelCase,back up,backUp,Correct,28.73,,,
+camelCase,back up,backUp,Correct,16.73,,,
 camelCase,back down,backDown,Correct,3.898,,,
 camelCase,set profile information,Incorrect,Incorrect,7.641,,,
 camelCase,create integer array,createIntegerArray,Correct,5.476,,,
