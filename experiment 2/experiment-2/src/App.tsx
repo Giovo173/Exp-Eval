@@ -525,7 +525,7 @@ export default function App() {
                                       true
                                     )
                                   }
-                                  className="block w-full p-2 text-white bg-slate-800 hover:text-amber-300 font-mono rounded transition ease-in-out duration-150"
+                                  className="block w-full p-4 text-2xl text-white bg-slate-800 hover:text-amber-300 font-mono rounded transition ease-in-out duration-150"
                                 >
                                   {choice}
                                 </button>
