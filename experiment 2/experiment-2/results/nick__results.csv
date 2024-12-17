@@ -1,0 +1,19 @@
+Type,Sentence,Choice,Correct,Time Spent (s),Age,Gender,Expertise
+kebab-case,move down,move-down,Correct,0.928,20,male,beginner
+kebab-case,move up,move-up,Correct,1.408,,,
+kebab-case,move left,move-left,Correct,1.099,,,
+kebab-case,set error message,Incorrect,Incorrect,2.823,,,
+kebab-case,print formatted info,print-formatted-info,Correct,1.443,,,
+kebab-case,create string array,Incorrect,Incorrect,1.168,,,
+kebab-case,handle default error message,handle-default-error-message,Correct,1.993,,,
+kebab-case,return format on click,return-format-on-click,Correct,2.783,,,
+kebab-case,format info into normal,format-info-into-normal,Correct,2.529,,,
+camelCase,move right,moveRight,Correct,1.945,20,male,beginner
+camelCase,back up,backUp,Correct,1.078,,,
+camelCase,back down,backDown,Correct,1.277,,,
+camelCase,set profile information,setProfileInformation,Correct,2.024,,,
+camelCase,create integer array,createIntegerArray,Correct,1.347,,,
+camelCase,handle submit form,Incorrect,Incorrect,2.075,,,
+camelCase,return format on click,returnFormatOnClick,Correct,1.67,,,
+camelCase,handle default state change,handleDefaultStateChange,Correct,1.879,,,
+camelCase,print info to csv,Incorrect,Incorrect,2.07,,,
