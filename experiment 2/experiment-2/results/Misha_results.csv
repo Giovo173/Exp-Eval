@@ -1,5 +1,5 @@
 Type,Sentence,Choice,Correct,Time Spent (s),Age,Gender,Expertise
-kebab-case,move down,move-down,Correct,4.308,21,female,intermediate
+kebab-case,move down,move-down,Correct,4.308,21,male,intermediate
 kebab-case,move up,Incorrect,Incorrect,0.838,,,
 kebab-case,move left,move-left,Correct,2.137,,,
 kebab-case,set error message,set-error-message,Correct,2.174,,,
@@ -8,7 +8,7 @@ kebab-case,create string array,create-string-array,Correct,2.439,,,
 kebab-case,handle default error message,handle-default-error-message,Correct,5.167,,,
 kebab-case,return format on click,return-format-on-click,Correct,2.102,,,
 kebab-case,format info into normal,format-info-into-normal,Correct,3.236,,,
-camelCase,move right,moveRight,Correct,2.287,21,female,intermediate
+camelCase,move right,moveRight,Correct,2.287,21,male,intermediate
 camelCase,back up,backUp,Correct,2.388,,,
 camelCase,back down,backDown,Correct,1.95,,,
 camelCase,set profile information,setProfileInformation,Correct,2.125,,,
