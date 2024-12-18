@@ -1,19 +1,19 @@
 Type,Sentence,Choice,Correct,Time Spent (s),Age,Gender,Expertise
-kebab-case,move down,move-down,Correct,2.368,25,female,intermediate
-kebab-case,move up,move-up,Correct,2.076,,,
-kebab-case,move left,move-left,Correct,1.594,,,
-kebab-case,set error message,set-error-message,Correct,2.26,,,
-kebab-case,print formatted info,print-formatted-info,Correct,1.765,,,
-kebab-case,create string array,create-string-array,Correct,1.963,,,
-kebab-case,handle default error message,handle-default-error-message,Correct,2.594,,,
-kebab-case,return format on click,return-format-on-click,Correct,5.851,,,
-kebab-case,format info into normal,format-info-into-normal,Correct,6.56,,,
-camelCase,move right,moveRight,Correct,2.231,25,female,intermediate
-camelCase,back up,backUp,Correct,3.29,,,
-camelCase,back down,backDown,Correct,3.992,,,
-camelCase,set profile information,setProfileInformation,Correct,4.736,,,
-camelCase,create integer array,createIntegerArray,Correct,3.466,,,
-camelCase,handle submit form,handleSubmitForm,Correct,3.714,,,
-camelCase,return format on click,Incorrect,Incorrect,3.588,,,
-camelCase,handle default state change,handleDefaultStateChange,Correct,9.98,,,
-camelCase,print info to csv,printInfoToCsv,Correct,5.134,,,
+kebab-case,move down,move-down,Correct,2.368,25,female,beginner
+kebab-case,move up,move-up,Correct,2.076,25,female,beginner
+kebab-case,move left,move-left,Correct,1.594,25,female,beginner
+kebab-case,set error message,set-error-message,Correct,2.26,25,female,beginner
+kebab-case,print formatted info,print-formatted-info,Correct,1.765,25,female,beginner
+kebab-case,create string array,create-string-array,Correct,1.963,25,female,beginner
+kebab-case,handle default error message,handle-default-error-message,Correct,2.594,25,female,beginner
+kebab-case,return format on click,return-format-on-click,Correct,5.851,25,female,beginner
+kebab-case,format info into normal,format-info-into-normal,Correct,6.56,25,female,beginner
+camelCase,move right,moveRight,Correct,2.231,25,female,beginner
+camelCase,back up,backUp,Correct,3.29,25,female,beginner
+camelCase,back down,backDown,Correct,3.992,25,female,beginner
+camelCase,set profile information,setProfileInformation,Correct,4.736,25,female,beginner
+camelCase,create integer array,createIntegerArray,Correct,3.466,25,female,beginner
+camelCase,handle submit form,handleSubmitForm,Correct,3.714,25,female,beginner
+camelCase,return format on click,Incorrect,Incorrect,3.588,25,female,beginner
+camelCase,handle default state change,handleDefaultStateChange,Correct,9.98,25,female,beginner
+camelCase,print info to csv,printInfoToCsv,Correct,5.134,25,female,beginner

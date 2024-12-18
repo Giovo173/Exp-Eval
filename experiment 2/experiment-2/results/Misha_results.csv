@@ -1,19 +1,19 @@
 Type,Sentence,Choice,Correct,Time Spent (s),Age,Gender,Expertise
 kebab-case,move down,move-down,Correct,4.308,21,male,intermediate
-kebab-case,move up,Incorrect,Incorrect,0.838,,,
-kebab-case,move left,move-left,Correct,2.137,,,
-kebab-case,set error message,set-error-message,Correct,2.174,,,
-kebab-case,print formatted info,print-formatted-info,Correct,3.957,,,
-kebab-case,create string array,create-string-array,Correct,2.439,,,
-kebab-case,handle default error message,handle-default-error-message,Correct,5.167,,,
-kebab-case,return format on click,return-format-on-click,Correct,2.102,,,
-kebab-case,format info into normal,format-info-into-normal,Correct,3.236,,,
+kebab-case,move up,Incorrect,Incorrect,0.838,21,male,intermediate
+kebab-case,move left,move-left,Correct,2.137,21,male,intermediate
+kebab-case,set error message,set-error-message,Correct,2.174,21,male,intermediate
+kebab-case,print formatted info,print-formatted-info,Correct,3.957,21,male,intermediate
+kebab-case,create string array,create-string-array,Correct,2.439,21,male,intermediate
+kebab-case,handle default error message,handle-default-error-message,Correct,5.167,21,male,intermediate
+kebab-case,return format on click,return-format-on-click,Correct,2.102,21,male,intermediate
+kebab-case,format info into normal,format-info-into-normal,Correct,3.236,21,male,intermediate
 camelCase,move right,moveRight,Correct,2.287,21,male,intermediate
-camelCase,back up,backUp,Correct,2.388,,,
-camelCase,back down,backDown,Correct,1.95,,,
-camelCase,set profile information,setProfileInformation,Correct,2.125,,,
-camelCase,create integer array,createIntegerArray,Correct,2.483,,,
-camelCase,handle submit form,handleSubmitForm,Correct,2.387,,,
-camelCase,return format on click,Incorrect,Incorrect,1.603,,,
-camelCase,handle default state change,handleDefaultStateChange,Correct,2.126,,,
-camelCase,print info to csv,printInfoToCsv,Correct,2.579,,,
+camelCase,back up,backUp,Correct,2.388,21,male,intermediate
+camelCase,back down,backDown,Correct,1.95,21,male,intermediate
+camelCase,set profile information,setProfileInformation,Correct,2.125,21,male,intermediate
+camelCase,create integer array,createIntegerArray,Correct,2.483,21,male,intermediate
+camelCase,handle submit form,handleSubmitForm,Correct,2.387,21,male,intermediate
+camelCase,return format on click,Incorrect,Incorrect,1.603,21,male,intermediate
+camelCase,handle default state change,handleDefaultStateChange,Correct,2.126,21,male,intermediate
+camelCase,print info to csv,printInfoToCsv,Correct,2.579,21,male,intermediate
