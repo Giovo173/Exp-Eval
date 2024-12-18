@@ -254,9 +254,9 @@ export default function App() {
         result ? Ksentences[index].correct : "Incorrect",
         result ? "Correct" : "Incorrect",
         Ktimes[index],
-        index === 0 ? age : "",
-        index === 0 ? gender : "",
-        index === 0 ? expertise : "",
+        age,
+        gender,
+        expertise,
       ]),
       ...CCresults.map((result, index) => [
         "camelCase",
@@ -264,9 +264,9 @@ export default function App() {
         result ? CCsentences[index].correct : "Incorrect",
         result ? "Correct" : "Incorrect",
         CCtimes[index],
-        index === 0 ? age : "",
-        index === 0 ? gender : "",
-        index === 0 ? expertise : "",
+        age,
+        gender,
+        expertise,
       ]),
     ];
 
