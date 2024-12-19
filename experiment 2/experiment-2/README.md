@@ -1,70 +1,31 @@
-# Getting Started with Create React App
+# Experiment 2: camelCase vs kebab-case
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Rossinelli Luca, Elisei Giovanni
 
-## Available Scripts
+The project contains the webapp and the results extracted from running the experiment
+by 16 subjects. The results are stored in the _results_ folder.
 
-In the project directory, you can run:
+To run the webapp open the experiment folder in the terminal and run the following commands:
 
-### `npm start`
+- `npm install` to intall all the dependencies needed to run the webapp, namely:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+  - React
+  - Tailwindcss
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- `npm start` to run the application, this should automatically open the webapp on start
 
-### `npm test`
+## The experiment is carried out in 3 sections
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. _Information panel_: merely explains the procedure to the test subject
+2. _Personal info form_: asks the subject for their name, age, gender and level of expertise (name is simply used to name the result file)
+3. _Experiment section_: a sequence of 18 questions that the subject has to answer
 
-### `npm run build`
+At the end of the experiment, the personal results of the subject will be displayed together with `Save Results to CSV` button;
+on click, this will download a .csv file on the computer, simply transfer the file in the _results_ folder.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Click on `Go Back` button to reset the experiment or `CTRL+C` in the terminal to stop the application.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Running the script
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+The jupiter notebook sections should be run to perform all calculation on the obtained results.
+This will produce both numerical and graphical results.
