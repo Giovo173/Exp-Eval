@@ -1,19 +1,19 @@
 Type,Sentence,Choice,Correct,Time Spent (s),Age,Gender,Expertise
 kebab-case,move down,move-down,Correct,0.984,23,male,expert
-kebab-case,move up,move-up,Correct,1.309,,,
-kebab-case,move left,move-left,Correct,2.392,,,
-kebab-case,set error message,set-error-message,Correct,1.158,,,
-kebab-case,print formatted info,print-formatted-info,Correct,2.293,,,
-kebab-case,create string array,create-string-array,Correct,2.298,,,
-kebab-case,handle default error message,handle-default-error-message,Correct,2.741,,,
-kebab-case,return format on click,return-format-on-click,Correct,3.67,,,
-kebab-case,format info into normal,format-info-into-normal,Correct,2.612,,,
+kebab-case,move up,move-up,Correct,1.309,23,male,expert
+kebab-case,move left,move-left,Correct,2.392,23,male,expert
+kebab-case,set error message,set-error-message,Correct,1.158,23,male,expert
+kebab-case,print formatted info,print-formatted-info,Correct,2.293,23,male,expert
+kebab-case,create string array,create-string-array,Correct,2.298,23,male,expert
+kebab-case,handle default error message,handle-default-error-message,Correct,2.741,23,male,expert
+kebab-case,return format on click,return-format-on-click,Correct,3.67,23,male,expert
+kebab-case,format info into normal,format-info-into-normal,Correct,2.612,23,male,expert
 camelCase,move right,moveRight,Correct,1.252,23,male,expert
-camelCase,back up,backUp,Correct,1.296,,,
-camelCase,back down,backDown,Correct,1.158,,,
-camelCase,set profile information,setProfileInformation,Correct,1.821,,,
-camelCase,create integer array,createIntegerArray,Correct,1.807,,,
-camelCase,handle submit form,handleSubmitForm,Correct,3.18,,,
-camelCase,return format on click,returnFormatOnClick,Correct,1.933,,,
-camelCase,handle default state change,handleDefaultStateChange,Correct,6.5,,,
-camelCase,print info to csv,Incorrect,Incorrect,2.978,,,
+camelCase,back up,backUp,Correct,1.296,23,male,expert
+camelCase,back down,backDown,Correct,1.158,23,male,expert
+camelCase,set profile information,setProfileInformation,Correct,1.821,23,male,expert
+camelCase,create integer array,createIntegerArray,Correct,1.807,23,male,expert
+camelCase,handle submit form,handleSubmitForm,Correct,3.18,23,male,expert
+camelCase,return format on click,returnFormatOnClick,Correct,1.933,23,male,expert
+camelCase,handle default state change,handleDefaultStateChange,Correct,6.5,23,male,expert
+camelCase,print info to csv,Incorrect,Incorrect,2.978,23,male,expert

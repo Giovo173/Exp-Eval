@@ -1,19 +1,19 @@
 Type,Sentence,Choice,Correct,Time Spent (s),Age,Gender,Expertise
 kebab-case,move down,move-down,Correct,1.414,39,male,expert
-kebab-case,move up,move-up,Correct,1.132,,,
-kebab-case,move left,move-left,Correct,2.264,,,
-kebab-case,set error message,set-error-message,Correct,2.794,,,
-kebab-case,print formatted info,print-formatted-info,Correct,3,,,
+kebab-case,move up,move-up,Correct,1.132,39,male,expert
+kebab-case,move left,move-left,Correct,2.264,39,male,expert
+kebab-case,set error message,set-error-message,Correct,2.794,39,male,expert
+kebab-case,print formatted info,print-formatted-info,Correct,3,39,male,expert
 kebab-case,create string array,create-string-array,Correct,2.582,,,
-kebab-case,handle default error message,handle-default-error-message,Correct,3.624,,,
-kebab-case,return format on click,return-format-on-click,Correct,2.107,,,
-kebab-case,format info into normal,Incorrect,Incorrect,2.887,,,
+kebab-case,handle default error message,handle-default-error-message,Correct,3.624,39,male,expert
+kebab-case,return format on click,return-format-on-click,Correct,2.107,39,male,expert
+kebab-case,format info into normal,Incorrect,Incorrect,2.887,39,male,expert
 camelCase,move right,moveRight,Correct,2.077,39,male,expert
-camelCase,back up,backUp,Correct,2.037,,,
-camelCase,back down,backDown,Correct,2.132,,,
-camelCase,set profile information,setProfileInformation,Correct,1.782,,,
-camelCase,create integer array,createIntegerArray,Correct,1.651,,,
-camelCase,handle submit form,Incorrect,Incorrect,1.955,,,
-camelCase,return format on click,returnFormatOnClick,Correct,2.525,,,
-camelCase,handle default state change,handleDefaultStateChange,Correct,2.311,,,
-camelCase,print info to csv,Incorrect,Incorrect,3.679,,,
+camelCase,back up,backUp,Correct,2.037,39,male,expert
+camelCase,back down,backDown,Correct,2.132,39,male,expert
+camelCase,set profile information,setProfileInformation,Correct,1.782,39,male,expert
+camelCase,create integer array,createIntegerArray,Correct,1.651,39,male,expert
+camelCase,handle submit form,Incorrect,Incorrect,1.955,39,male,expert
+camelCase,return format on click,returnFormatOnClick,Correct,2.525,39,male,expert
+camelCase,handle default state change,handleDefaultStateChange,Correct,2.311,39,male,expert
+camelCase,print info to csv,Incorrect,Incorrect,3.679,39,male,expert

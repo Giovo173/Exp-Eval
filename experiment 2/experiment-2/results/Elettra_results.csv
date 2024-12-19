@@ -1,19 +1,19 @@
 Type,Sentence,Choice,Correct,Time Spent (s),Age,Gender,Expertise
 kebab-case,move down,move-down,Correct,3.981,20,female,never coded
-kebab-case,move up,move-up,Correct,3.532,,,
-kebab-case,move left,move-left,Correct,3.284,,,
-kebab-case,set error message,set-error-message,Correct,5.764,,,
-kebab-case,print formatted info,print-formatted-info,Correct,4.158,,,
-kebab-case,create string array,create-string-array,Correct,11.148,,,
-kebab-case,handle default error message,handle-default-error-message,Correct,5.27,,,
-kebab-case,return format on click,Incorrect,Incorrect,2.443,,,
-kebab-case,format info into normal,format-info-into-normal,Correct,2.75,,,
+kebab-case,move up,move-up,Correct,3.532,20,female,never coded
+kebab-case,move left,move-left,Correct,3.284,20,female,never coded
+kebab-case,set error message,set-error-message,Correct,5.764,20,female,never coded
+kebab-case,print formatted info,print-formatted-info,Correct,4.158,20,female,never coded
+kebab-case,create string array,create-string-array,Correct,11.148,20,female,never coded
+kebab-case,handle default error message,handle-default-error-message,Correct,5.27,20,female,never coded
+kebab-case,return format on click,Incorrect,Incorrect,2.443,20,female,never coded
+kebab-case,format info into normal,format-info-into-normal,Correct,2.75,20,female,never coded
 camelCase,move right,moveRight,Correct,3.276,20,female,never coded
-camelCase,back up,backUp,Correct,2.417,,,
-camelCase,back down,backDown,Correct,2.834,,,
-camelCase,set profile information,setProfileInformation,Correct,5.617,,,
-camelCase,create integer array,createIntegerArray,Correct,4.424,,,
-camelCase,handle submit form,handleSubmitForm,Correct,4.898,,,
-camelCase,return format on click,returnFormatOnClick,Correct,8.905,,,
-camelCase,handle default state change,handleDefaultStateChange,Correct,5.765,,,
-camelCase,print info to csv,printInfoToCsv,Correct,9.714,,,
+camelCase,back up,backUp,Correct,2.417,20,female,never coded
+camelCase,back down,backDown,Correct,2.834,20,female,never coded
+camelCase,set profile information,setProfileInformation,Correct,5.617,20,female,never coded
+camelCase,create integer array,createIntegerArray,Correct,4.424,20,female,never coded
+camelCase,handle submit form,handleSubmitForm,Correct,4.898,20,female,never coded
+camelCase,return format on click,returnFormatOnClick,Correct,8.905,20,female,never coded
+camelCase,handle default state change,handleDefaultStateChange,Correct,5.765,20,female,never coded
+camelCase,print info to csv,printInfoToCsv,Correct,9.714,20,female,never coded
